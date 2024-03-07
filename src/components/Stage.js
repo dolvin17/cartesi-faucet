@@ -19,9 +19,8 @@ export default function Stage() {
   const { openChainModal = () => {} } = useChainModal();
   const { openConnectModal = openChainModal } = useConnectModal();
   const { openAccountModal = openConnectModal } = useAccountModal();
-  const { writeContract, isLoading, isSucscess, isError, error } =
+  const { writeContract, isLoading, isSuccess, isError, error } =
     useWriteContract();
-  const isSuccess = false;
   const claim = async () => {
     if (!address) {
       openAccountModal?.();
