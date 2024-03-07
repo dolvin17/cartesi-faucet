@@ -78,8 +78,12 @@ export default function Stage() {
                 width={100}
                 height={100}
               />
+			
             </button>
           )}
+		  {isError && (
+			<p className="text-xl subpixel-antialiased font-semibold text-transparent bg-transparent animate-gradient bg-clip-text bg-gradient-to-b from-amber-400 via-yellow-100 to-amber-400">{"You claimed 100 CTSI already today"}</p>
+		  )}
         </label>
         <SplineComponent />
       </div>
