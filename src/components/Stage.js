@@ -7,6 +7,7 @@ import {
 import Image from "next/image";
 import { useWriteContract, useAccount } from "wagmi";
 import dynamic from "next/dynamic";
+import { Fragment, useState } from "react";
 
 const abi = require("./contract.json");
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
@@ -20,7 +21,7 @@ export default function Stage() {
   const { openAccountModal = openConnectModal } = useAccountModal();
   const { writeContract, isLoading, isSucscess, isError, error } =
     useWriteContract();
-	const isSuccess = false;
+  const isSuccess = false;
   const claim = async () => {
     if (!address) {
       openAccountModal?.();
@@ -80,8 +81,32 @@ export default function Stage() {
             </button>
           )}
         </label>
-          <Spline scene="https://prod.spline.design/88JJi6MLHNF7eYS3/scene.splinecode" />
+        <SplineComponent />
       </div>
     </>
+  );
+}
+
+function SplineComponent() {
+  const [isSplineLoaded, setIsSplineLoaded] = useState(false);
+
+  return (
+    <Fragment>
+      {!isSplineLoaded && (
+        <Image
+          className="animate-alternate-reverse animate-spin animate-infinite"
+          src="/ctsi.svg"
+          alt="arrow-right"
+          width={50}
+          height={50}
+        />
+      )}
+
+      <Spline
+        className={isSplineLoaded  || "hidden"}
+        onLoad={() =>  setTimeout(() => setIsSplineLoaded(true), 1500)}
+        scene="https://prod.spline.design/88JJi6MLHNF7eYS3/scene.splinecode"
+      />
+    </Fragment>
   );
 }
