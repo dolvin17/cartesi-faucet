@@ -40,7 +40,7 @@ export default function Stage() {
 
   return (
     <>
-      <div className="static flex items-center justify-center min-h-[700px] h-[calc(100vh-6rem)] ">
+      <div className="static flex items-center justify-center min-h-[700px] h-[calc(100vh-6rem)] sm:h-screen">
         <label
           className={`absolute cursor-pointer flex flex-col items-center justify-center gap-4 pl-1 ${
             isSuccess && "bg-black"
