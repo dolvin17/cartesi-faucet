@@ -16,13 +16,13 @@ export default function Navegation() {
 				<div className="flex items-center gap-4 ">
 						<Link
 							href="https://cartesiscan.io/"
-							className="px-3 py-2 bg-gradient-to-l border-[1px] rounded-lg border-opacity-10 border-amber-400  from-yellow-700 via-amber-600 to-orange-400 text-transparent bg-clip-text bg-300% animate-gradient"
+							className="hidden sm:inline px-3 py-2 bg-gradient-to-l border-[1px] rounded-lg border-opacity-10 border-amber-400  from-yellow-700 via-amber-600 to-orange-400 text-transparent bg-clip-text bg-300% animate-gradient"
 						>
 							CartesiScan
 						</Link>
 				<Link
 					href="https://explorer.cartesi.io/"
-					className="px-3 py-2 bg-gradient-to-l border-[1px] rounded-lg border-opacity-10 border-amber-400  from-yellow-700 via-amber-600 to-orange-400 text-transparent bg-clip-text bg-300% animate-gradient"
+					className="hidden sm:inline px-3 py-2 bg-gradient-to-l border-[1px] rounded-lg border-opacity-10 border-amber-400  from-yellow-700 via-amber-600 to-orange-400 text-transparent bg-clip-text bg-300% animate-gradient"
 					>
 					Cartesi Explorer
 				</Link>

@@ -6,6 +6,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { goerli, sepolia } from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { Analytics } from '@vercel/analytics/react';
 
 const config = getDefaultConfig({
 	appName: "My RainbowKit App",
@@ -20,6 +21,7 @@ const queryClient = new QueryClient();
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
+			<Analytics/>
 			<body className={inter.className}>
 				<WagmiProvider config={config}>
 					<QueryClientProvider client={queryClient}>

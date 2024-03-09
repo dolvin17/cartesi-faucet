@@ -7,7 +7,8 @@ import {
 import Image from "next/image";
 import { useWriteContract, useAccount } from "wagmi";
 import dynamic from "next/dynamic";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import Link from "next/link"
 
 const abi = require("./contract.json");
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
@@ -39,7 +40,7 @@ export default function Stage() {
 
   return (
     <>
-      <div className="static flex items-center justify-center h-[900px] ">
+      <div className="static flex items-center justify-center min-h-[700px] h-[calc(100vh-6rem)] ">
         <label
           className={`absolute cursor-pointer flex flex-col items-center justify-center gap-4 pl-1 ${
             isSuccess && "bg-black"
@@ -71,27 +72,50 @@ export default function Stage() {
               onClick={claim}
             >
               <Image
-                className="sm:w-[200px] sm:h[200px]"
+                className="sm:w-[200px] invert sm:invert-0 sm:h[200px]"
                 src="/claim.svg"
                 alt="arrow-right"
                 width={100}
                 height={100}
               />
-			
             </button>
           )}
-		  {isError && (
-			<p className="text-xl subpixel-antialiased font-semibold text-transparent bg-transparent animate-gradient bg-clip-text bg-gradient-to-b from-amber-400 via-yellow-100 to-amber-400">{"You claimed 100 CTSI already today"}</p>
-		  )}
+          {isError && (
+            <p className="text-xl subpixel-antialiased font-semibold text-transparent bg-transparent animate-gradient bg-clip-text bg-gradient-to-b from-amber-400 via-yellow-100 to-amber-400">
+              {"You claimed 100 CTSI already today"}
+            </p>
+          )}
         </label>
         <SplineComponent />
       </div>
+
+      <footer className="sm:hidden p-4 flex items-center justify-center gap-4">
+        <Link
+          href="https://cartesiscan.io/"
+          className="px-3 py-2 text-amber-400"
+        >
+          CartesiScan
+        </Link>
+        <Link
+          href="https://explorer.cartesi.io/"
+          className="px-3 py-2 text-amber-400"
+        >
+          Cartesi Explorer
+        </Link>
+      </footer>
     </>
-  );
+  )
 }
 
 function SplineComponent() {
+  const [isMobile, setIsMobile] = useState(true);
   const [isSplineLoaded, setIsSplineLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  },[]);
+
+  if (isMobile) return null;
 
   return (
     <Fragment>
@@ -106,7 +130,7 @@ function SplineComponent() {
       )}
 
       <Spline
-        className={isSplineLoaded  || "hidden"}
+        className={isSplineLoaded || "hidden"}
         onLoad={() =>  setTimeout(() => setIsSplineLoaded(true), 1500)}
         scene="https://prod.spline.design/88JJi6MLHNF7eYS3/scene.splinecode"
       />
